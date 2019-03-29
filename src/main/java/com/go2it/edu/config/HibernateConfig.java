@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@ImportResource({ "classpath:perssistance.xml" })
+@ImportResource({ "classpath:persistence.xml" })
 public class HibernateConfig {
 }

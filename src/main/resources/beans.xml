@@ -7,4 +7,6 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.2.xsd">
     <context:component-scan base-package="com.go2it.edu"/>
+
+    <import resource="persistence.xml"></import>
 </beans>
