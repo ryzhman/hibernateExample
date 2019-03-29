@@ -10,7 +10,7 @@ import javax.persistence.Id;
 /**
  * @author Alex Ryzhkov
  */
-@Entity
+@Entity(name = "merchant")
 public class Merchant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +19,11 @@ public class Merchant {
 	private String bankName;
 	private String swift;
 	private String account;
-	private double charge;
-	private short period;
-	private double minSum;
-	private double needToSend;
-	private double sent;
+	private Double charge;
+	private Short period;
+	private Double minSum;
+	private Double needToSend;
+	private Double sent;
 	private java.sql.Date lastSent;
 
 	public Merchant() {
@@ -69,43 +69,43 @@ public class Merchant {
 		this.account = account;
 	}
 
-	public double getCharge() {
+	public Double getCharge() {
 		return charge;
 	}
 
-	public void setCharge(double charge) {
+	public void setCharge(Double charge) {
 		this.charge = charge;
 	}
 
-	public short getPeriod() {
+	public Short getPeriod() {
 		return period;
 	}
 
-	public void setPeriod(short period) {
+	public void setPeriod(Short period) {
 		this.period = period;
 	}
 
-	public double getMinSum() {
+	public Double getMinSum() {
 		return minSum;
 	}
 
-	public void setMinSum(double minSum) {
+	public void setMinSum(Double minSum) {
 		this.minSum = minSum;
 	}
 
-	public double getNeedToSend() {
+	public Double getNeedToSend() {
 		return needToSend;
 	}
 
-	public void setNeedToSend(double needToSend) {
+	public void setNeedToSend(Double needToSend) {
 		this.needToSend = needToSend;
 	}
 
-	public double getSent() {
+	public Double getSent() {
 		return sent;
 	}
 
-	public void setSent(double sent) {
+	public void setSent(Double sent) {
 		this.sent = sent;
 	}
 
