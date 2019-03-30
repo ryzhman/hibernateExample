@@ -1,6 +1,7 @@
 package com.go2it.edu.entity;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -115,5 +116,27 @@ public class Merchant {
 
 	public void setLastSent(Date lastSent) {
 		this.lastSent = lastSent;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Merchant merchant = (Merchant) o;
+		return id == merchant.id && Objects.equals(name, merchant.name) && Objects.equals(bankName,
+				merchant.bankName) && Objects.equals(swift, merchant.swift) && Objects.equals(account,
+				merchant.account) && Objects.equals(charge, merchant.charge) && Objects.equals(period,
+				merchant.period) && Objects.equals(minSum, merchant.minSum) && Objects.equals(needToSend,
+				merchant.needToSend) && Objects.equals(sent, merchant.sent) && Objects.equals(lastSent,
+				merchant.lastSent);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(id, name, bankName, swift, account, charge, period, minSum, needToSend, sent,
+				lastSent);
 	}
 }
