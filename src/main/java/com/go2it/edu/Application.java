@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.go2it.edu.entity.Merchant;
-import com.go2it.edu.service.MerchantService;
+import com.go2it.edu.entity.Customer;
+import com.go2it.edu.service.ICustomerService;
 
 /**
  * @author Alex Ryzhkov
@@ -21,12 +21,11 @@ public class Application {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
 			log.debug("Hello");
-			MerchantService merchantService = context.getBean(MerchantService.class);
-			Merchant m1 = merchantService.findById(1);
-			System.out.println("name = " + m1.getName());
+			ICustomerService customerService = context.getBean(ICustomerService.class);
+			Customer customer = customerService.findById(1);
+			System.out.println(customer.toString());
 
 			log.info("Application was ended successfully");
-			throw new RuntimeException("Test exception for logging purposes");
 		} catch (Exception e) {
 			log.error("Exception happened during the execution of the application. " + e);
 		}
