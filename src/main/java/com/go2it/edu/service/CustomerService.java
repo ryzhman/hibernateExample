@@ -12,9 +12,10 @@ import com.go2it.edu.repository.CustomerRepository;
 @Service
 public class CustomerService implements ICustomerService{
 	@Autowired
-	private CustomerRepository customerDao;
+	private CustomerRepository customerRepository;
+	@Override
 	public Customer findById(int id) {
-		return customerDao.findById(id);
+		return customerRepository.findById(id);
 	}
 }
 
