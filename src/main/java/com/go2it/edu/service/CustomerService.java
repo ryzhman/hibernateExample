@@ -33,7 +33,7 @@ public class CustomerService implements ICustomerService{
 		customerRepository.remove(id);
 	}
 
-	@Transactional
+//	@Transactional
 	@Override
 	public boolean updateCcNo(int id, String ccNo){
 		Customer customerToUpdate= customerRepository.findById(id);

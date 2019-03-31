@@ -22,7 +22,7 @@ public class Application {
 			log.info("Bean context is up");
 
 			ICustomerService customerService = context.getBean(ICustomerService.class);
-			boolean result = customerService.updateCcNo(3, "555555555555");
+			boolean result = customerService.updateCcNo(3, "66666666666666");
 			System.out.println("Update finished. Result is - " + result);
 
 			Customer foundById = customerService.findById(3);
