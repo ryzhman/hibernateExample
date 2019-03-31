@@ -6,9 +6,11 @@ import com.go2it.edu.entity.Customer;
  * @author Alex Ryzhkov
  */
 public interface ICustomerRepository {
-	public Customer findById(int id);
+	Customer findById(int id);
 
-	public void save(Customer customer);
+	void save(Customer customer);
 
-	public void remove(int id);
+	void remove(int id);
+
+	boolean update(Customer updatedCustomer);
 }

@@ -1,8 +1,5 @@
 package com.go2it.edu;
 
-import java.time.LocalDate;
-import java.time.Month;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -24,9 +21,9 @@ public class Application {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
 
-
 			ICustomerService customerService = context.getBean(ICustomerService.class);
-			customerService.remove(2);
+			boolean result = customerService.updateCcNo(3, "555555555555");
+			System.out.println("Update finished. Result is - " + result);
 
 			Customer foundById = customerService.findById(3);
 			System.out.println(foundById);

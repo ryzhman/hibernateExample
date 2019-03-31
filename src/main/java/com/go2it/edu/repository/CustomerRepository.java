@@ -33,6 +33,15 @@ public class CustomerRepository implements ICustomerRepository {
 			em.remove(customer);
 		}
 	}
+
+	@Override
+	public boolean update(Customer updatedCustomer) {
+		if (updatedCustomer != null) {
+			return true;
+		} else {
+			return true;
+		}
+	}
 }
 
 
