@@ -21,10 +21,19 @@ public class CustomerRepository implements ICustomerRepository {
 		return customer;
 	}
 
+	@Override
 	public void save(Customer customer) {
 		em.persist(customer);
 	}
 
+	@Override
+	public void remove(int id) {
+		Customer customer = findById(id);
+		if (customer != null) {
+			em.remove(customer);
+		}
+	}
 }
+
 
 

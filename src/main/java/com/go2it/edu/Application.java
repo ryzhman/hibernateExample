@@ -26,19 +26,9 @@ public class Application {
 
 
 			ICustomerService customerService = context.getBean(ICustomerService.class);
-			Customer customer = new Customer();
-			customer.setAddress("Independence st. 21, Malaga, Spain");
-			customer.setCcNo("11122233344488");
-			customer.setCcType("Master Card");
-			customer.setEmail("vera@s.com");
-			LocalDate dt = LocalDate.of(2018, Month.FEBRUARY, 28);
-			customer.setMaturity(java.sql.Date.valueOf(dt));
-			customer.setName("Vera Po");
-			customerService.save(customer);
-			int idForNewCustomer = customer.getId();
-			System.out.println("id = " + idForNewCustomer);
+			customerService.remove(2);
 
-			Customer foundById = customerService.findById(idForNewCustomer);
+			Customer foundById = customerService.findById(3);
 			System.out.println(foundById);
 
 			log.info("Application was ended successfully");

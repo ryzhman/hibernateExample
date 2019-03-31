@@ -15,15 +15,24 @@ import com.go2it.edu.repository.CustomerRepository;
 public class CustomerService implements ICustomerService{
 	@Autowired
 	private CustomerRepository customerRepository;
+
 	@Override
 	public Customer findById(int id) {
 		return customerRepository.findById(id);
 	}
 
 	@Transactional
+	@Override
 	public void save(Customer customer){
 		customerRepository.save(customer);
 	}
+
+	@Transactional
+	@Override
+	public void remove(int id){
+		customerRepository.remove(id);
+	}
+
 
 }
 

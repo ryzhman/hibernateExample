@@ -10,4 +10,5 @@ public interface ICustomerService {
 
 	public void save(Customer customer);
 
+	public void remove(int id);
 }
