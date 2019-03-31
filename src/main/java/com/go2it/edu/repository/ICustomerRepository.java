@@ -7,4 +7,7 @@ import com.go2it.edu.entity.Customer;
  */
 public interface ICustomerRepository {
 	public Customer findById(int id);
+
+	public void save(Customer customer);
+
 }

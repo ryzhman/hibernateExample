@@ -20,6 +20,11 @@ public class CustomerRepository implements ICustomerRepository {
 		customer = em.find(Customer.class, id);
 		return customer;
 	}
+
+	public void save(Customer customer) {
+		em.persist(customer);
+	}
+
 }
 
 

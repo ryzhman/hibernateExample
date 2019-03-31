@@ -16,7 +16,7 @@ public class Customer {
 	private java.sql.Date maturity;
 	private String ccType;
 	private String ccNo;
-	private String eMail;
+	private String email;
 	private String address;
 	private String name;
 
@@ -55,12 +55,12 @@ public class Customer {
 		this.ccNo = ccNo;
 	}
 
-	public String geteMail() {
-		return eMail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {
@@ -82,7 +82,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer{" + "id=" + id + ", maturity=" + maturity + ", ccType='" + ccType + '\'' + ", ccNo='"
-				+ ccNo + '\'' + ", eMail='" + eMail + '\'' + ", address='" + address + '\'' + ", name='"
+				+ ccNo + '\'' + ", email='" + email + '\'' + ", address='" + address + '\'' + ", name='"
 				+ name + '\'' + '}';
 	}
 }

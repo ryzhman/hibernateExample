@@ -8,4 +8,6 @@ import com.go2it.edu.entity.Customer;
 public interface ICustomerService {
 	public Customer findById(int id);
 
+	public void save(Customer customer);
+
 }
