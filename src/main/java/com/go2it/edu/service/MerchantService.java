@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.go2it.edu.entity.Merchant;
+import com.go2it.edu.entity.Result;
 import com.go2it.edu.repository.MerchantRepository;
 
 /**
@@ -24,5 +25,10 @@ public class MerchantService implements IMerchantService {
 	@Override
 	public List<Merchant> getSortedByNeedToPay() {
 		return merchantRepository.getSortedByNeedToPay();
+	}
+
+	@Override
+	public List<Result> getTotalReport() {
+		return merchantRepository.getTotalReport();
 	}
 }

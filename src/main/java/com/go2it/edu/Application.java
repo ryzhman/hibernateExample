@@ -9,7 +9,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.go2it.edu.entity.Merchant;
 import com.go2it.edu.entity.Payment;
+import com.go2it.edu.entity.Result;
 import com.go2it.edu.service.ICustomerService;
+import com.go2it.edu.service.IMerchantService;
 import com.go2it.edu.service.IPaymentService;
 import com.go2it.edu.service.MerchantService;
 
@@ -25,11 +27,12 @@ public class Application {
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
-			MerchantService merchantService = context.getBean(MerchantService.class);
-			List<Merchant> list = 	merchantService.getSortedByNeedToPay();
-			for (Merchant m: list) {
-				System.out.println("name = " + m.getName() + ", sumToPay = " + m.getNeedToSend());
+			IMerchantService merchantService = context.getBean(IMerchantService.class);
+			List<Result> list = merchantService.getTotalReport();
+			for (Result r: list) {
+				System.out.format("%1$25s  %2$8.2f \n", r.getName(), r.getSum());
 			}
+
 
 			log.info("Application was ended successfully");
 		} catch (Exception e) {
