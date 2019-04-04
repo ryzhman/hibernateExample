@@ -33,8 +33,8 @@ public class MerchantRepository implements IMerchantRepository {
 
 	@Override
 	public List<Result> getTotalReport() {
-		String txt = "SELECT new com.go2it.edu.entity.Result (m.name, SUM(p.chargePaid)) ";
-		txt += "FROM payment p, merchant m WHERE m.id = p.merchantId GROUP BY m.name";
+		String txt = "SELECT new com.go2it.edu.entity.Result (p.merchant.name, count(p), SUM(p.chargePaid))";
+		txt += "FROM payment p GROUP BY p.merchant.name";
 		TypedQuery<Result> query = em.createQuery(txt, Result.class);
 		return query.getResultList();
 	}
