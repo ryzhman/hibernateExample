@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.go2it.edu.service.ICustomerService;
+import com.go2it.edu.service.IPaymentService;
 
 /**
  * @author Alex Ryzhkov
@@ -21,12 +22,10 @@ public class Application {
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
-			ICustomerService customerService = context.getBean(ICustomerService.class);
-			List<String> list = customerService.getNamesBySumPaid(20);
+			IPaymentService paymentService = context.getBean(IPaymentService.class);
+			double sum = paymentService.getPaymentsSum();
+			System.out.println("total = " + sum);
 
-			for (String s : list) {
-				System.out.println(s);
-			}
 
 			log.info("Application was ended successfully");
 		} catch (Exception e) {

@@ -10,4 +10,6 @@ import com.go2it.edu.entity.Payment;
 public interface IPaymentService {
 	public List<Payment> findByMerchantId(int id);
 
+	public double getPaymentsSum();
+
 }

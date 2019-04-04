@@ -53,4 +53,9 @@ public class PaymentRepository implements IPaymentRepository {
 		return result;
 	}
 
+	@Override
+	public double getPaymentsSum() {
+		TypedQuery<Double> query = em.createQuery ("SELECT SUM(p.sumPaid) FROM payment p", Double.class);
+		return query.getSingleResult();
+	}
 }

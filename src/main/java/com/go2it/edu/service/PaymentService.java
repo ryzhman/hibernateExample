@@ -22,4 +22,8 @@ public class PaymentService implements IPaymentService {
 		//		return paymentRepository.findByMerchantId(id);
 	}
 
+	@Override
+	public double getPaymentsSum() {
+		return paymentRepository.getPaymentsSum();
+	}
 }

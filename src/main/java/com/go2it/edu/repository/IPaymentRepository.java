@@ -11,4 +11,6 @@ public interface IPaymentRepository {
 	public List<Payment> findByMerchantId(int id);
 
 	List<Payment> findByMerchantIdHibernateSpecific(int id);
+
+	public double getPaymentsSum();
 }
