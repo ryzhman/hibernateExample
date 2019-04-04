@@ -1,11 +1,16 @@
 package com.go2it.edu.entity;
 
 import java.sql.Date;
+import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  * @author Alex Ryzhkov
@@ -19,6 +24,10 @@ public class Customer {
 	private String email;
 	private String address;
 	private String name;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="Payment", joinColumns=@JoinColumn(name="customerId"),
+			inverseJoinColumns=@JoinColumn(name="merchantId"))
+	private Collection<Merchant> merchants;
 
 	public Customer() {
 	}
@@ -77,6 +86,14 @@ public class Customer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Collection<Merchant> getMerchants() {
+		return merchants;
+	}
+
+	public void setMerchants(Collection<Merchant> merchants) {
+		this.merchants = merchants;
 	}
 
 	@Override

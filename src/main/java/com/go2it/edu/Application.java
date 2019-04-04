@@ -8,8 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.go2it.edu.entity.Customer;
 import com.go2it.edu.entity.Merchant;
 import com.go2it.edu.entity.Payment;
+import com.go2it.edu.service.CustomerService;
+import com.go2it.edu.service.ICustomerService;
 import com.go2it.edu.service.IMerchantService;
 
 /**
@@ -24,16 +27,13 @@ public class Application {
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
-			IMerchantService merchantService = context.getBean(IMerchantService.class);
-			List<Merchant> list = merchantService.getSortedByNeedToPay();
-			for (Merchant m : list) {
-				System.out.println("=======================");
-				System.out.println(m.getName());
-
-				System.out.println("  ");
-				Collection<Payment> payments = m.getPayments();
-				for (Payment p : payments) {
-					System.out.println(p.toString());
+			ICustomerService customerService = context.getBean(ICustomerService.class);
+			Customer customer = customerService.findById(1);
+			if (customer != null){
+				System.out.println(customer.toString());
+				Collection<Merchant> merchants = customer.getMerchants();
+				for (Merchant m : merchants) {
+					System.out.println(m.getName());
 				}
 			}
 
