@@ -16,4 +16,5 @@ public interface IPaymentRepository {
 
 	public List<Payment> getLargePayments(double limit);
 
+	public Payment findById(int id);
 }

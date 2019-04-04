@@ -31,4 +31,9 @@ public class PaymentService implements IPaymentService {
 	public List<Payment> getLargePayments(double limit) {
 		return paymentRepository.getLargePayments(limit);
 	}
+
+	@Override
+	public Payment findById(int id) {
+		return paymentRepository.findById(id);
+	}
 }

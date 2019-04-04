@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Alex Ryzhkov
@@ -18,8 +20,9 @@ public class Payment {
 	private String goods;
 	@Column(name = "sumPayed") private Double sumPaid;
 	@Column(name = "chargePayed") private Double chargePaid;
-	private Integer merchantId;
-	private Integer customerId;
+	@ManyToOne
+	@JoinColumn(name="merchantId")
+	private Merchant merchant;
 
 	Payment() {
 	}
@@ -64,26 +67,17 @@ public class Payment {
 		this.chargePaid = chargePaid;
 	}
 
-	public Integer getMerchantId() {
-		return merchantId;
+	public Merchant getMerchant() {
+		return merchant;
 	}
 
-	public void setMerchantId(Integer merchantId) {
-		this.merchantId = merchantId;
-	}
-
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
+	public void setMerchant(Merchant merchant) {
+		this.merchant = merchant;
 	}
 
 	@Override
 	public String toString() {
 		return "Payment{" + "id=" + id + ", paymentDate=" + paymentDate + ", goods='" + goods + '\''
-				+ ", sumPaid=" + sumPaid + ", chargePaid=" + chargePaid + ", merchantId=" + merchantId
-				+ ", customerId=" + customerId + '}';
+				+ ", sumPaid=" + sumPaid + ", chargePaid=" + chargePaid + ", merchant=" + merchant + '}';
 	}
 }

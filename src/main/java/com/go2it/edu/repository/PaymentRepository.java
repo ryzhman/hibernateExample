@@ -66,4 +66,9 @@ public class PaymentRepository implements IPaymentRepository {
 		query.setParameter("limit", limit);
 		return query.getResultList();
 	}
+
+	@Override
+	public Payment findById(int id) {
+		return em.find(Payment.class, id);
+	}
 }
