@@ -1,5 +1,7 @@
 package com.go2it.edu.service;
 
+import java.util.List;
+
 import com.go2it.edu.entity.Customer;
 
 /**
@@ -13,4 +15,7 @@ public interface ICustomerService {
 	void remove(int id);
 
 	boolean updateCcNo(int id, String ccNo);
+
+	public List<String> getNamesBySumPaid(double sumPayed);
+
 }

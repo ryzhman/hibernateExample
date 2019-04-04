@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.go2it.edu.entity.Payment;
-import com.go2it.edu.service.IPaymentService;
+import com.go2it.edu.service.ICustomerService;
 
 /**
  * @author Alex Ryzhkov
@@ -22,11 +21,11 @@ public class Application {
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
-			IPaymentService paymentService = context.getBean(IPaymentService.class);
+			ICustomerService customerService = context.getBean(ICustomerService.class);
+			List<String> list = customerService.getNamesBySumPaid(20);
 
-			List<Payment> list = paymentService.findByMerchantId(1);
-			for (Payment p : list) {
-				System.out.println(p.toString());
+			for (String s : list) {
+				System.out.println(s);
 			}
 
 			log.info("Application was ended successfully");

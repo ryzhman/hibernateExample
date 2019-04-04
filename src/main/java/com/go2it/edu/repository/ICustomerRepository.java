@@ -1,5 +1,7 @@
 package com.go2it.edu.repository;
 
+import java.util.List;
+
 import com.go2it.edu.entity.Customer;
 
 /**
@@ -13,4 +15,7 @@ public interface ICustomerRepository {
 	void remove(int id);
 
 	boolean update(Customer updatedCustomer);
+
+	public List<String> getNamesBySumPaid(double sumPayed);
+
 }

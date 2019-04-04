@@ -16,7 +16,7 @@ public class Payment {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) private int id;
 	@Column(name = "dt") private java.sql.Date paymentDate;
 	private String goods;
-	@Column(name = "payed") private Double sumPaid;
+	@Column(name = "sumPayed") private Double sumPaid;
 	@Column(name = "chargePaid") private Double chargePaid;
 	private Integer merchantId;
 	private Integer customerId;

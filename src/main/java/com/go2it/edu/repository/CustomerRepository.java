@@ -1,7 +1,10 @@
 package com.go2it.edu.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -42,6 +45,16 @@ public class CustomerRepository implements ICustomerRepository {
 			return true;
 		}
 	}
+
+	@Override
+	public List<String> getNamesBySumPaid(double sumPaid){
+		String txt = "SELECT DISTINCT c.name FROM ";
+		txt += "payment p, customer c " ;
+		txt += "WHERE c.id = p.customerId AND p.sumPaid >" 	+ sumPaid;
+		TypedQuery<String> query = em.createQuery(txt, String.class);
+		return query.getResultList();
+	}
+
 }
 
 

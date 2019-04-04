@@ -10,7 +10,7 @@ import javax.persistence.Id;
 /**
  * @author Alex Ryzhkov
  */
-@Entity
+@Entity(name = "customer")
 public class Customer {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) private int id;
 	private java.sql.Date maturity;

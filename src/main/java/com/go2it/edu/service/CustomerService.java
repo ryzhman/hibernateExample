@@ -1,5 +1,7 @@
 package com.go2it.edu.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +45,11 @@ public class CustomerService implements ICustomerService{
 		}
 		return false;
 	}
+
+	@Override
+	public List<String> getNamesBySumPaid(double sumPayed){
+		return customerRepository.getNamesBySumPaid(sumPayed);
+	}
+
 }
 
