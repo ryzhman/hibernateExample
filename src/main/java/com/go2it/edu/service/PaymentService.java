@@ -26,4 +26,9 @@ public class PaymentService implements IPaymentService {
 	public double getPaymentsSum() {
 		return paymentRepository.getPaymentsSum();
 	}
+
+	@Override
+	public List<Payment> getLargePayments(double limit) {
+		return paymentRepository.getLargePayments(limit);
+	}
 }

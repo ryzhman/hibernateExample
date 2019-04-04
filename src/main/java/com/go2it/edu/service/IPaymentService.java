@@ -12,4 +12,6 @@ public interface IPaymentService {
 
 	public double getPaymentsSum();
 
+	public List<Payment> getLargePayments(double limit);
+
 }

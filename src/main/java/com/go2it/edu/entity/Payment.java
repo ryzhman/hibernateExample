@@ -79,4 +79,11 @@ public class Payment {
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
+
+	@Override
+	public String toString() {
+		return "Payment{" + "id=" + id + ", paymentDate=" + paymentDate + ", goods='" + goods + '\''
+				+ ", sumPaid=" + sumPaid + ", chargePaid=" + chargePaid + ", merchantId=" + merchantId
+				+ ", customerId=" + customerId + '}';
+	}
 }

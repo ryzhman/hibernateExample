@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.go2it.edu.entity.Payment;
 import com.go2it.edu.service.ICustomerService;
 import com.go2it.edu.service.IPaymentService;
 
@@ -23,9 +24,10 @@ public class Application {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
 			IPaymentService paymentService = context.getBean(IPaymentService.class);
-			double sum = paymentService.getPaymentsSum();
-			System.out.println("total = " + sum);
-
+			List<Payment> list = paymentService.getLargePayments(100.0);
+			for (Payment p: list) {
+				System.out.println(p.toString());
+			}
 
 			log.info("Application was ended successfully");
 		} catch (Exception e) {

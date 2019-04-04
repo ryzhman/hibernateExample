@@ -58,4 +58,11 @@ public class PaymentRepository implements IPaymentRepository {
 		TypedQuery<Double> query = em.createQuery ("SELECT SUM(p.sumPaid) FROM payment p", Double.class);
 		return query.getSingleResult();
 	}
+
+	@Override
+	public List<Payment> getLargePayments(double limit) {
+		TypedQuery<Payment> query = em.createQuery ("SELECT p FROM payment p WHERE p.sumPaid > ?1", Payment.class);
+		query.setParameter(1, limit);
+		return query.getResultList();
+	}
 }
