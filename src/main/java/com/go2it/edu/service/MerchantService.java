@@ -1,5 +1,7 @@
 package com.go2it.edu.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,10 @@ public class MerchantService implements IMerchantService {
 	@Override
 	public Merchant findById(int id) {
 		return merchantRepository.findById(id);
+	}
+
+	@Override
+	public List<Merchant> getSortedByNeedToPay() {
+		return merchantRepository.getSortedByNeedToPay();
 	}
 }

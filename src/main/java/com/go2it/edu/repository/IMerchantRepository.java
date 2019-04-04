@@ -1,5 +1,7 @@
 package com.go2it.edu.repository;
 
+import java.util.List;
+
 import com.go2it.edu.entity.Merchant;
 
 /**
@@ -7,5 +9,6 @@ import com.go2it.edu.entity.Merchant;
  */
 public interface IMerchantRepository {
 	Merchant findById(int id);
+	public List<Merchant> getSortedByNeedToPay();
 
 }

@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.go2it.edu.entity.Merchant;
 import com.go2it.edu.entity.Payment;
 import com.go2it.edu.service.ICustomerService;
 import com.go2it.edu.service.IPaymentService;
+import com.go2it.edu.service.MerchantService;
 
 /**
  * @author Alex Ryzhkov
@@ -23,10 +25,10 @@ public class Application {
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 			log.info("Bean context is up");
-			IPaymentService paymentService = context.getBean(IPaymentService.class);
-			List<Payment> list = paymentService.getLargePayments(100.0);
-			for (Payment p: list) {
-				System.out.println(p.toString());
+			MerchantService merchantService = context.getBean(MerchantService.class);
+			List<Merchant> list = 	merchantService.getSortedByNeedToPay();
+			for (Merchant m: list) {
+				System.out.println("name = " + m.getName() + ", sumToPay = " + m.getNeedToSend());
 			}
 
 			log.info("Application was ended successfully");
