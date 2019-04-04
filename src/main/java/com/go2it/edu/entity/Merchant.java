@@ -1,21 +1,22 @@
 package com.go2it.edu.entity;
 
 import java.sql.Date;
+import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author Alex Ryzhkov
  */
 @Entity(name = "merchant")
 public class Merchant {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) private int id;
 	private String name;
 	private String bankName;
 	private String swift;
@@ -26,6 +27,8 @@ public class Merchant {
 	private Double needToSend;
 	private Double sent;
 	private java.sql.Date lastSent;
+	@OneToMany(mappedBy = "merchant", fetch = FetchType.EAGER)
+	private Collection<Payment> payments;
 
 	public Merchant() {
 	}
@@ -118,6 +121,14 @@ public class Merchant {
 		this.lastSent = lastSent;
 	}
 
+	public Collection<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(Collection<Payment> payments) {
+		this.payments = payments;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -135,7 +146,6 @@ public class Merchant {
 
 	@Override
 	public int hashCode() {
-
 		return Objects.hash(id, name, bankName, swift, account, charge, period, minSum, needToSend, sent,
 				lastSent);
 	}
