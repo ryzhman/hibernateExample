@@ -28,7 +28,6 @@ public class PaymentRepository implements IPaymentRepository {
 		TypedQuery<Payment> query = em.createQuery("SELECT p FROM  payment p WHERE p.merchantId = " + id,
 				Payment.class);
 		return query.getResultList();
-
 	}
 
 	/**
@@ -70,5 +69,14 @@ public class PaymentRepository implements IPaymentRepository {
 	@Override
 	public Payment findById(int id) {
 		return em.find(Payment.class, id);
+	}
+
+	@Override
+	public void save(Payment payment) {
+		if (payment.getId() == 0) {
+			em.persist(payment);
+		} else {
+			em.merge(payment);
+		}
 	}
 }

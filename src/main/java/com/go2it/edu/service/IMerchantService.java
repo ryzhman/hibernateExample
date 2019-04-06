@@ -15,4 +15,7 @@ public interface IMerchantService {
 
 	public List<Result> getTotalReport();
 
+	Merchant getByName(String name);
+
+	void save(Merchant merchant);
 }

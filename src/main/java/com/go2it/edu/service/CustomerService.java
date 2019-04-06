@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.go2it.edu.entity.Customer;
-import com.go2it.edu.repository.CustomerRepository;
+import com.go2it.edu.repository.ICustomerRepository;
 
 /**
  * @author Alex Ryzhkov
@@ -16,7 +16,7 @@ import com.go2it.edu.repository.CustomerRepository;
 @Service
 public class CustomerService implements ICustomerService{
 	@Autowired
-	private CustomerRepository customerRepository;
+	private ICustomerRepository customerRepository;
 
 	@Override
 	public Customer findById(int id) {
@@ -25,8 +25,9 @@ public class CustomerService implements ICustomerService{
 
 	@Transactional
 	@Override
-	public void save(Customer customer){
+	public Customer save(Customer customer){
 		customerRepository.save(customer);
+		return customer;
 	}
 
 	@Transactional
@@ -51,5 +52,9 @@ public class CustomerService implements ICustomerService{
 		return customerRepository.getNamesBySumPaid(sumPayed);
 	}
 
+	@Override
+	public Customer findByName(String name) {
+		return customerRepository.findByName(name);
+	}
 }
 

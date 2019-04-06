@@ -10,6 +10,8 @@ import com.go2it.edu.entity.Customer;
 public interface ICustomerRepository {
 	Customer findById(int id);
 
+	Customer findByName(String name);
+
 	void save(Customer customer);
 
 	void remove(int id);

@@ -2,6 +2,9 @@ package com.go2it.edu.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import com.go2it.edu.entity.Customer;
 import com.go2it.edu.entity.Payment;
 
 /**
@@ -15,4 +18,8 @@ public interface IPaymentService {
 	public List<Payment> getLargePayments(double limit);
 
 	public Payment findById(int id);
+
+	void save(Payment payment);
+
+	void addNewPayment(Payment payment);
 }

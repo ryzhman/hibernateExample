@@ -15,4 +15,7 @@ public interface IMerchantRepository {
 
 	public List<Result> getTotalReport();
 
+	void save(Merchant m);
+
+	Merchant getByName(String name);
 }

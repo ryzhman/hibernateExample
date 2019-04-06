@@ -3,9 +3,13 @@ package com.go2it.edu.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.go2it.edu.entity.Customer;
@@ -15,18 +19,22 @@ import com.go2it.edu.entity.Customer;
  */
 @Repository
 public class CustomerRepository implements ICustomerRepository {
+	private final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
 	@PersistenceContext private EntityManager em;
 
 	@Override
 	public Customer findById(int id) {
-		Customer customer = null;
-		customer = em.find(Customer.class, id);
+		Customer customer = em.find(Customer.class, id);
 		return customer;
 	}
 
 	@Override
 	public void save(Customer customer) {
-		em.persist(customer);
+		if (customer.getId() == 0) {
+			em.persist(customer);
+		} else {
+			em.merge(customer);
+		}
 	}
 
 	@Override
@@ -55,6 +63,18 @@ public class CustomerRepository implements ICustomerRepository {
 		return query.getResultList();
 	}
 
+	@Override
+	public Customer findByName(String name) {
+		try {
+			Query query = em.createQuery("from customer where name=:name");
+			query.setParameter("name", name);
+			Customer customer = (Customer) query.getSingleResult();
+			return customer;
+		} catch (NoResultException e) {
+			logger.warn("No customer was found by the name: " + name);
+			return null;
+		}
+	}
 }
 
 

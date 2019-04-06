@@ -20,11 +20,12 @@ public class Payment {
 	private String goods;
 	@Column(name = "sumPayed") private Double sumPaid;
 	@Column(name = "chargePayed") private Double chargePaid;
-	@ManyToOne
-	@JoinColumn(name="merchantId")
+	@ManyToOne @JoinColumn(name = "merchantId")
 	private Merchant merchant;
+	@ManyToOne @JoinColumn(name = "customerId")
+	private Customer customer;
 
-	Payment() {
+	public Payment() {
 	}
 
 	public int getId() {
@@ -73,6 +74,14 @@ public class Payment {
 
 	public void setMerchant(Merchant merchant) {
 		this.merchant = merchant;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override

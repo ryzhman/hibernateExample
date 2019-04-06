@@ -14,8 +14,7 @@ import com.go2it.edu.repository.MerchantRepository;
  */
 @Service
 public class MerchantService implements IMerchantService {
-	@Autowired
-	private MerchantRepository merchantRepository;
+	@Autowired private MerchantRepository merchantRepository;
 
 	@Override
 	public Merchant findById(int id) {
@@ -30,5 +29,15 @@ public class MerchantService implements IMerchantService {
 	@Override
 	public List<Result> getTotalReport() {
 		return merchantRepository.getTotalReport();
+	}
+
+	@Override
+	public Merchant getByName(String name) {
+		return merchantRepository.getByName(name);
+	}
+
+	@Override
+	public void save(Merchant merchant) {
+		merchantRepository.save(merchant);
 	}
 }

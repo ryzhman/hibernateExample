@@ -2,7 +2,9 @@ package com.go2it.edu.entity;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  * @author Alex Ryzhkov
@@ -28,6 +31,8 @@ public class Customer {
 	@JoinTable(name="Payment", joinColumns=@JoinColumn(name="customerId"),
 			inverseJoinColumns=@JoinColumn(name="merchantId"))
 	private Collection<Merchant> merchants;
+	@OneToMany(mappedBy = "customer", cascade=CascadeType.ALL)
+	private List<Payment> payment;
 
 	public Customer() {
 	}
@@ -94,6 +99,14 @@ public class Customer {
 
 	public void setMerchants(Collection<Merchant> merchants) {
 		this.merchants = merchants;
+	}
+
+	public List<Payment> getPayment() {
+		return payment;
+	}
+
+	public void setPayment(List<Payment> payment) {
+		this.payment = payment;
 	}
 
 	@Override

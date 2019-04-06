@@ -10,7 +10,9 @@ import com.go2it.edu.entity.Customer;
 public interface ICustomerService {
 	Customer findById(int id);
 
-	void save(Customer customer);
+	Customer findByName(String name);
+
+	Customer save(Customer customer);
 
 	void remove(int id);
 
