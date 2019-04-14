@@ -7,9 +7,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
 
 import com.go2it.edu.entity.Payment;
@@ -21,46 +23,25 @@ import com.go2it.edu.entity.Payment;
 public class PaymentRepository implements IPaymentRepository {
 	private static Logger log = LoggerFactory.getLogger(PaymentRepository.class);
 
-	@PersistenceContext private EntityManager em;
+	@Autowired
+	SessionFactory sessionFactory;
 
 	@Override
 	public List<Payment> findByMerchantId(int id) {
-		TypedQuery<Payment> query = em.createQuery("SELECT p FROM  payment p WHERE p.merchantId = " + id,
+		TypedQuery<Payment> query = sessionFactory.getCurrentSession().createQuery("SELECT p FROM  payment p WHERE p.merchantId = " + id,
 				Payment.class);
 		return query.getResultList();
 	}
 
-	/**
-	 * Hibernate required an explicit transaction even for READ operations (JPA does not).
-	 * See the specific HQL syntax
-	 *
-	 * @param id
-	 * @return
-	 */
-	@Transactional
-	@Override
-	public List<Payment> findByMerchantIdHibernateSpecific(int id) {
-		Session currentSession = em.unwrap(Session.class);
-		List<Payment> result = null;
-		try {
-			result = currentSession.createQuery("FROM  payment p WHERE p.merchantId = " + id, Payment.class)
-					.list();
-			return result;
-		} catch (Exception e) {
-			log.error("Exception during fetching a payment by merchantId: " + id + ". Exceptiom - " + e);
-		}
-		return result;
-	}
-
 	@Override
 	public double getPaymentsSum() {
-		TypedQuery<Double> query = em.createQuery ("SELECT SUM(p.sumPaid) FROM payment p", Double.class);
+		TypedQuery<Double> query = sessionFactory.getCurrentSession().createQuery("SELECT SUM(p.sumPaid) FROM payment p", Double.class);
 		return query.getSingleResult();
 	}
 
 	@Override
 	public List<Payment> getLargePayments(double limit) {
-		TypedQuery<Payment> query = em.createQuery("SELECT p FROM payment p WHERE p.sumPaid > :limit",
+		TypedQuery<Payment> query = sessionFactory.getCurrentSession().createQuery("SELECT p FROM payment p WHERE p.sumPaid > :limit",
 				Payment.class);
 		query.setParameter("limit", limit);
 		return query.getResultList();
@@ -68,15 +49,15 @@ public class PaymentRepository implements IPaymentRepository {
 
 	@Override
 	public Payment findById(int id) {
-		return em.find(Payment.class, id);
+		return sessionFactory.getCurrentSession().find(Payment.class, id);
 	}
 
 	@Override
 	public void save(Payment payment) {
 		if (payment.getId() == 0) {
-			em.persist(payment);
+			sessionFactory.getCurrentSession().persist(payment);
 		} else {
-			em.merge(payment);
+			sessionFactory.getCurrentSession().merge(payment);
 		}
 	}
 }
