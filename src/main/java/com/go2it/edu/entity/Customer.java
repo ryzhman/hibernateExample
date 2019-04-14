@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,8 @@ import javax.persistence.OneToMany;
 @Entity(name = "customer")
 public class Customer {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) private int id;
-	private java.sql.Date maturity;
+	@Column(name = "maturity")
+	private java.sql.Date expDate;
 	private String ccType;
 	private String ccNo;
 	private String email;
@@ -45,12 +47,12 @@ public class Customer {
 		this.id = id;
 	}
 
-	public Date getMaturity() {
-		return maturity;
+	public Date getExpDate() {
+		return expDate;
 	}
 
-	public void setMaturity(Date maturity) {
-		this.maturity = maturity;
+	public void setExpDate(Date expDate) {
+		this.expDate = expDate;
 	}
 
 	public String getCcType() {
@@ -111,7 +113,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer{" + "id=" + id + ", maturity=" + maturity + ", ccType='" + ccType + '\'' + ", ccNo='"
+		return "Customer{" + "id=" + id + ", expDate=" + expDate + ", ccType='" + ccType + '\'' + ", ccNo='"
 				+ ccNo + '\'' + ", email='" + email + '\'' + ", address='" + address + '\'' + ", name='"
 				+ name + '\'' + '}';
 	}

@@ -24,9 +24,9 @@
     <bean id="dataSource"
           class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/CASH_MANAGEMENT"/>
-        <property name="username" value="root"/>
-        <property name="password" value="password"/>
+        <property name="url" value="jdbc:mysql://192.99.62.149:3306/sergssv_tickets?useSSL=false"/>
+        <property name="username" value="sergssv_tickets"/>
+        <property name="password" value="8fPoH37CcOd3"/>
     </bean>
 
     <bean id="txManager"

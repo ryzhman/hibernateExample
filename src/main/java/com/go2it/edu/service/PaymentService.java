@@ -23,9 +23,7 @@ public class PaymentService implements IPaymentService {
 
 	@Override
 	public List<Payment> findByMerchantId(int id) {
-		//Hibernate specific implementation
-		return paymentRepository.findByMerchantIdHibernateSpecific(id);
-		//		return paymentRepository.findByMerchantId(id);
+				return paymentRepository.findByMerchantId(id);
 	}
 
 	@Override
